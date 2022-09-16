@@ -4,10 +4,16 @@ const gameBoard = (() => {
     let turn = 'x'
 
     //cache DOM
-    const table = document.querySelector('#table');
+    const ticTacToe = document.querySelector('#game');
+    const table = ticTacToe.querySelector('#table');
+    const start = ticTacToe.querySelector('#start');
     const squares = table.querySelectorAll('.square');
-
+    const playerOneInput = start.querySelector('#playerOne')
+    const playerTwoInput = start.querySelector('#playerTwo')
+    
     //bind events
+    playerOneInput.addEventListener('change', getPlayerName);
+    playerTwoInput.addEventListener('change', getPlayerName);
     squares.forEach(el => {
         el.addEventListener('click', addMark);
         el.addEventListener('click', checkWin)
@@ -21,6 +27,11 @@ const gameBoard = (() => {
             const square = table.querySelector(`[data-key="${index}"]`);
             square.textContent = el;
         });
+    }
+    
+    function getPlayerName(){
+            const playerOne = playerOneInput.value || 'Player One'
+            const playerTwo = playerTwoInput.value || 'Player Two'
     }
 
     function addMark(){
@@ -55,5 +66,5 @@ const gameBoard = (() => {
         }
     }
 
-    return {gameWon}
+    return {playerOne, playerTwo, gameWon}
 })(); 
