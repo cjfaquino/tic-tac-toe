@@ -7,12 +7,11 @@ const gameBoard = (() => {
     render();
 
     function render() {
-        board.forEach(el => {
-            const square = document.createElement('div');
-            square.classList.add('square');
+        board.forEach((el, index) => {
+            const square = table.querySelector(`[data-key="${index}"]`);
             square.textContent = el;
             table.appendChild(square);
         });
     }
     return {board}
-})();
+})(); 
