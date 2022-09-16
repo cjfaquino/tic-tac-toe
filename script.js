@@ -3,6 +3,13 @@ const gameBoard = (() => {
 
     //cache DOM
     const table = document.querySelector('#table');
+    const squares = table.querySelectorAll('.square');
+
+    //bind events
+    squares.forEach(el => {
+        el.addEventListener('click', addMark)
+    })
+
 
     render();
 
@@ -13,5 +20,12 @@ const gameBoard = (() => {
             table.appendChild(square);
         });
     }
+
+    function addMark(){
+        const index = this.dataset.key;
+        board[index] = 'x'
+        render();
+    }
+
     return {board}
 })(); 
