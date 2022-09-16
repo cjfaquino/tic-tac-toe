@@ -5,9 +5,21 @@
 }
 
 #table {
+  margin-top: 2rem;
   display: grid;
   grid-template-columns: repeat(3, 150px);
   grid-template-rows: repeat(3, 150px);
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.square {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
 }
 
 .square:nth-child(3n+1),
