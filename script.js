@@ -1,5 +1,6 @@
 const gameBoard = (() => {
-    const board = ['x','x','x','o','o','o','x','x','x'];
+    const board = ['','','','','','','','',''];
+    let turn = 'x'
 
     //cache DOM
     const table = document.querySelector('#table');
@@ -23,7 +24,13 @@ const gameBoard = (() => {
 
     function addMark(){
         const index = this.dataset.key;
-        board[index] = 'x'
+        if(turn=='x' && !board[index]){
+            board[index] = 'x'
+            turn = 'o'
+        } else if(turn=='o' && !board[index]){
+            board[index] = 'o'
+            turn = 'x'
+        }
         render();
     }
 
