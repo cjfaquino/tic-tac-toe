@@ -20,7 +20,6 @@ const gameBoard = (() => {
         board.forEach((el, index) => {
             const square = table.querySelector(`[data-key="${index}"]`);
             square.textContent = el;
-            table.appendChild(square);
         });
     }
 
@@ -56,5 +55,5 @@ const gameBoard = (() => {
         }
     }
 
-    return {board, gameWon}
+    return {gameWon}
 })(); 
