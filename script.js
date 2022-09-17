@@ -32,8 +32,12 @@ const gameBoard = (() => {
             const square = table.querySelector(`[data-key="${index}"]`);
             square.textContent = el;
         });
-        currentPlayer = getCurrentPlayer();
-        turnText.textContent = `${currentPlayer}'s turn`;
+        checkWin();
+        if(!gameWon){
+            currentPlayer = getCurrentPlayer();
+            turnText.textContent = `${currentPlayer}'s turn`
+        }
+        else if(gameWon){turnText.textContent = `${currentPlayer} won!`};
     }
 
     function getCurrentPlayer(){
@@ -66,20 +70,16 @@ const gameBoard = (() => {
         if(//rows
             board[0] == board[1] && board[0] == board[2] && board[0] ||
             board[3] == board[4] && board[3] == board[5] && board[3] ||
-            board[6] == board[7] && board[6] == board[8] && board[6]){
-                gameWon = true;
-            } 
-        else if(//columns
+            board[6] == board[7] && board[6] == board[8] && board[6] ||
+            //columns
             board[0] == board[3] && board[0] == board[6] && board[0] ||
             board[1] == board[4] && board[1] == board[7] && board[1] ||
-            board[2] == board[5] && board[2] == board[8] && board[2]){
-                gameWon = true;
-            }
-        else if(//diagonal
+            board[2] == board[5] && board[2] == board[8] && board[2] ||
+            //diagonals
             board[0] == board[4] && board[0] == board[8] && board[0] ||
             board[6] == board[4] && board[6] == board[2] && board[6]){
                 gameWon = true;
-        }
+            } 
     }
 
     return {playerOne, playerTwo, gameWon}
