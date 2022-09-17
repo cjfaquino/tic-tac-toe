@@ -46,3 +46,13 @@
   border-top: var(--board-border);
   border-bottom: var(--board-border);
 }
+
+.playText{
+  margin: 1rem 0;
+}
+
+.reset{
+  padding: 10px;
+  border: none;
+  border-radius: 2px;
+}
