@@ -12,7 +12,7 @@ const game = (() => {
     const start = ticTacToe.querySelector('#start');
     const startBtn = start.querySelector('.startBtn');
     const squares = table.querySelectorAll('.square');
-    const turnText = ticTacToe.querySelector('.turnText');
+    const playText = ticTacToe.querySelector('.playText');
     const resetBtn = ticTacToe.querySelector('.reset');
     const playerOneInput = start.querySelector('#playerOne');
     const playerTwoInput = start.querySelector('#playerTwo');
@@ -29,7 +29,7 @@ const game = (() => {
     })
 
     function initialize(){
-        turnText.textContent = '';
+        playText.textContent = '';
         playerOneInput.value = '';
         playerTwoInput.value = '';
         board = [null,null,null,null,null,null,null,null,null];
@@ -49,11 +49,11 @@ const game = (() => {
         checkWin();
         if(gameStatus == 'playing'){
             currentPlayer = getCurrentPlayer();
-            turnText.textContent = `${currentPlayer}'s turn`
+            playText.textContent = `${currentPlayer}'s turn`
         }
-        else if(gameStatus == 'win'){turnText.textContent = `${currentPlayer} won!`}
+        else if(gameStatus == 'win'){playText.textContent = `${currentPlayer} won!`}
         else if(gameStatus == 'draw'){
-            turnText.textContent = "It's a draw..."
+            playText.textContent = "It's a draw..."
         };
     }
 
