@@ -3,7 +3,7 @@ const game = (() => {
     let playerOne;
     let playerTwo;
     let currentPlayer;
-    let gameWon;
+    let gameStatus;
     let turn;
 
     //cache DOM
@@ -20,6 +20,7 @@ const game = (() => {
     //bind events
     playerOneInput.addEventListener('change', changePlayerName);
     playerTwoInput.addEventListener('change', changePlayerName);
+    startBtn.addEventListener('click', setPlay)
     startBtn.addEventListener('click', render)
     resetBtn.addEventListener('click', initialize)
     squares.forEach(el => {
@@ -28,13 +29,14 @@ const game = (() => {
     })
 
     function initialize(){
+        turnText.textContent = '';
         playerOneInput.value = '';
         playerTwoInput.value = '';
-        board = ['','','','','','','','',''];
+        board = [null,null,null,null,null,null,null,null,null];
         playerOne = 'Player One';
         playerTwo = 'Player Two';
         currentPlayer = playerOne;
-        gameWon = false;
+        gameStatus = 'new';
         turn = 'x';
         render();
     }
@@ -45,11 +47,18 @@ const game = (() => {
             square.textContent = el;
         });
         checkWin();
-        if(!gameWon){
+        if(gameStatus == 'playing'){
             currentPlayer = getCurrentPlayer();
             turnText.textContent = `${currentPlayer}'s turn`
         }
-        else if(gameWon){turnText.textContent = `${currentPlayer} won!`};
+        else if(gameStatus == 'win'){turnText.textContent = `${currentPlayer} won!`}
+        else if(gameStatus == 'draw'){
+            turnText.textContent = "It's a draw..."
+        };
+    }
+
+    function setPlay() {
+        gameStatus = 'playing'
     }
 
     function getCurrentPlayer(){
@@ -68,18 +77,37 @@ const game = (() => {
 
     function addMark(){
         const index = this.dataset.key;
-        if(turn=='x' && !board[index] && !gameWon){
+        if(turn=='x' && !board[index] && gameStatus == 'playing'){
             board[index] = 'x'
             turn = 'o'
-        } else if(turn=='o' && !board[index] && !gameWon){
+        } else if(turn=='o' && !board[index] && gameStatus == 'playing'){
             board[index] = 'o'
             turn = 'x'
         }
         render();
     }
 
+    function checkDraw(){
+        // if(
+        //     board[0] &&
+        //     board[1] &&
+        //     board[2] &&
+        //     board[3] &&
+        //     board[4] &&
+        //     board[5] &&
+        //     board[6] &&
+        //     board[7] &&
+        //     board[8]
+        // ){
+        //     return gameStatus = 'draw'
+        // }
+        if(board.every(el => el !== null)){
+            gameStatus = 'draw'
+        }
+    }
+
     function checkWin(){
-        if(//rows
+        if( //rows
             board[0] == board[1] && board[0] == board[2] && board[0] ||
             board[3] == board[4] && board[3] == board[5] && board[3] ||
             board[6] == board[7] && board[6] == board[8] && board[6] ||
@@ -90,9 +118,10 @@ const game = (() => {
             //diagonals
             board[0] == board[4] && board[0] == board[8] && board[0] ||
             board[6] == board[4] && board[6] == board[2] && board[6]){
-                gameWon = true;
+                gameStatus = 'win';
             } 
-        return gameWon;
+        checkDraw();
+        return gameStatus;
     }
 
     return {initialize, getCurrentPlayer, checkWin}
