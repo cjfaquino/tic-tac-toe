@@ -1,10 +1,10 @@
 const gameBoard = (() => {
-    const board = ['','','','','','','','',''];
-    let playerOne = 'Player One';
-    let playerTwo = 'Player Two';
-    let currentPlayer = playerOne;
-    let gameWon = false;
-    let turn = 'x'
+    let board;
+    let playerOne;
+    let playerTwo;
+    let currentPlayer;
+    let gameWon;
+    let turn;
 
     //cache DOM
     const ticTacToe = document.querySelector('#game');
@@ -13,6 +13,7 @@ const gameBoard = (() => {
     const startBtn = start.querySelector('.startBtn');
     const squares = table.querySelectorAll('.square');
     const turnText = ticTacToe.querySelector('.turnText');
+    const resetBtn = ticTacToe.querySelector('.reset');
     const playerOneInput = start.querySelector('#playerOne');
     const playerTwoInput = start.querySelector('#playerTwo');
     
@@ -20,12 +21,25 @@ const gameBoard = (() => {
     playerOneInput.addEventListener('change', changePlayerName);
     playerTwoInput.addEventListener('change', changePlayerName);
     startBtn.addEventListener('click', render)
+    resetBtn.addEventListener('click', initialize)
     squares.forEach(el => {
         el.addEventListener('click', addMark);
         el.addEventListener('click', checkWin)
     })
 
-    render();
+    initialize();
+
+    function initialize(){
+        playerOneInput.value = '';
+        playerTwoInput.value = '';
+        board = ['','','','','','','','',''];
+        playerOne = 'Player One';
+        playerTwo = 'Player Two';
+        currentPlayer = playerOne;
+        gameWon = false;
+        turn = 'x';
+        render();
+    }
 
     function render() {
         board.forEach((el, index) => {
