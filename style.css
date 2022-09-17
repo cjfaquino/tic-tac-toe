@@ -10,6 +10,13 @@
   font-size: 1rem;
 }
 
+button{
+  padding: 10px;
+  background-color: rgb(241, 241, 241);
+  border: none;
+  border-radius: 2px;
+}
+
 #gameBoard {
   display: flex;
   flex-direction: column;
@@ -49,10 +56,4 @@
 
 .playText{
   margin: 1rem 0;
-}
-
-.reset{
-  padding: 10px;
-  border: none;
-  border-radius: 2px;
 }
