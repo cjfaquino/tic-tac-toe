@@ -37,7 +37,11 @@ button{
   grid-template-rows: repeat(3, 100px);
   justify-content: center;
   align-items: center;
-  
+
+}
+
+.hide{
+  display: none !important;
 }
 
 .square {
