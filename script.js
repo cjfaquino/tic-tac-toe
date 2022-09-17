@@ -1,5 +1,8 @@
 const gameBoard = (() => {
     const board = ['','','','','','','','',''];
+    let playerOne = 'Player One';
+    let playerTwo = 'Player Two';
+    let currentPlayer = playerOne;
     let gameWon = false;
     let turn = 'x'
 
@@ -7,18 +10,20 @@ const gameBoard = (() => {
     const ticTacToe = document.querySelector('#game');
     const table = ticTacToe.querySelector('#table');
     const start = ticTacToe.querySelector('#start');
+    const startBtn = start.querySelector('.startBtn');
     const squares = table.querySelectorAll('.square');
-    const playerOneInput = start.querySelector('#playerOne')
-    const playerTwoInput = start.querySelector('#playerTwo')
+    const turnText = ticTacToe.querySelector('.turnText');
+    const playerOneInput = start.querySelector('#playerOne');
+    const playerTwoInput = start.querySelector('#playerTwo');
     
     //bind events
-    playerOneInput.addEventListener('change', getPlayerName);
-    playerTwoInput.addEventListener('change', getPlayerName);
+    playerOneInput.addEventListener('change', changePlayerName);
+    playerTwoInput.addEventListener('change', changePlayerName);
+    startBtn.addEventListener('click', render)
     squares.forEach(el => {
         el.addEventListener('click', addMark);
         el.addEventListener('click', checkWin)
     })
-
 
     render();
 
@@ -27,11 +32,22 @@ const gameBoard = (() => {
             const square = table.querySelector(`[data-key="${index}"]`);
             square.textContent = el;
         });
+        currentPlayer = getCurrentPlayer();
+        turnText.textContent = `${currentPlayer}'s turn`;
     }
-    
-    function getPlayerName(){
-            const playerOne = playerOneInput.value || 'Player One'
-            const playerTwo = playerTwoInput.value || 'Player Two'
+
+    function getCurrentPlayer(){
+        if(turn=='x') return playerOne;
+        if(turn=='o') return playerTwo;
+    }
+
+    function changePlayerName(){
+        if(playerOneInput.value){
+            playerOne = playerOneInput.value;
+        }
+        if(playerTwoInput.value){
+            playerTwo = playerTwoInput.value;
+        }
     }
 
     function addMark(){
