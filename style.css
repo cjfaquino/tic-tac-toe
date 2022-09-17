@@ -1,3 +1,7 @@
+:root{
+  --board-border: 1px solid black;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -32,12 +36,12 @@
 
 .square:nth-child(3n+1),
 .square:nth-child(3n+2) {
-  border-right: 1px solid black;
+  border-right: var(--board-border);
 }
 
 .square:nth-child(4),
 .square:nth-child(5),
 .square:nth-child(6) {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: var(--board-border);
+  border-bottom: var(--board-border);
 }
