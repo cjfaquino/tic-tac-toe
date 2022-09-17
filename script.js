@@ -1,4 +1,4 @@
-const gameBoard = (() => {
+const game = (() => {
     let board;
     let playerOne;
     let playerTwo;
@@ -26,8 +26,6 @@ const gameBoard = (() => {
         el.addEventListener('click', addMark);
         el.addEventListener('click', checkWin)
     })
-
-    initialize();
 
     function initialize(){
         playerOneInput.value = '';
@@ -94,7 +92,10 @@ const gameBoard = (() => {
             board[6] == board[4] && board[6] == board[2] && board[6]){
                 gameWon = true;
             } 
+        return gameWon;
     }
 
-    return {playerOne, playerTwo, gameWon}
+    return {initialize, getCurrentPlayer, checkWin}
 })(); 
+
+game.initialize();
