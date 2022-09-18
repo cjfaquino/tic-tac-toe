@@ -21,9 +21,14 @@ h1 {
 button{
   padding: 10px;
   background-color: rgb(241, 241, 241);
+  color: black;
   border: none;
   border-radius: 2px;
   width: 100%;
+}
+
+button:hover{
+  filter: brightness(.9);
 }
 
 input[type='text']{
