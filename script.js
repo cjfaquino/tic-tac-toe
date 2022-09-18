@@ -1,4 +1,5 @@
 const game = (() => {
+    let mode = 'light';
     let board;
     let playerOne;
     let playerTwo;
@@ -7,6 +8,8 @@ const game = (() => {
     let turn;
 
     //cache DOM
+    const body = document.body;
+    const darkToggle = document.querySelector('#darkToggle');
     const ticTacToe = document.querySelector('#game');
     const table = ticTacToe.querySelector('#table');
     const start = ticTacToe.querySelector('#start');
@@ -18,8 +21,10 @@ const game = (() => {
     const newRndBtn = ticTacToe.querySelector('.newRound');
     const playerOneInput = start.querySelector('#playerOne');
     const playerTwoInput = start.querySelector('#playerTwo');
+    const textInputs = start.querySelectorAll('[type="text"]')
     
     //bind events
+    darkToggle.addEventListener('click', toggleDarkMode);
     playerOneInput.addEventListener('change', changePlayerName);
     playerTwoInput.addEventListener('change', changePlayerName);
     startBtn.addEventListener('click', setPlay);
@@ -141,6 +146,34 @@ const game = (() => {
             } 
         checkDraw();
         return gameStatus;
+    }
+
+    function toggleDarkMode(){
+        if(mode == 'light'){
+            body.style.color = 'white';
+            body.style.backgroundColor = 'black';
+            document.documentElement.style.setProperty('--board-border', '5px solid white');
+            textInputs.forEach(el => {
+                el.style.backgroundColor = 'black';
+                el.style.color = 'white';
+                
+            });
+            darkToggle.textContent = 'Light';
+            mode = 'dark';
+        }
+        else {
+            body.style.color = 'black';
+            body.style.backgroundColor = 'white';
+            document.documentElement.style.setProperty('--board-border', '5px solid black');
+            textInputs.forEach(el => {
+                el.style.backgroundColor = 'white';
+                el.style.color = 'black';
+                
+            })
+            darkToggle.textContent = 'Dark'
+            mode = 'light'
+        }
+
     }
 
     return {initialize, getCurrentPlayer, checkWin}
