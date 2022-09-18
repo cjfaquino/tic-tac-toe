@@ -15,15 +15,17 @@ const game = (() => {
     const squares = table.querySelectorAll('.square');
     const playText = ticTacToe.querySelector('.playText');
     const resetBtn = ticTacToe.querySelector('.reset');
+    const newRndBtn = ticTacToe.querySelector('.newRound');
     const playerOneInput = start.querySelector('#playerOne');
     const playerTwoInput = start.querySelector('#playerTwo');
     
     //bind events
     playerOneInput.addEventListener('change', changePlayerName);
     playerTwoInput.addEventListener('change', changePlayerName);
-    startBtn.addEventListener('click', setPlay)
-    startBtn.addEventListener('click', render)
-    resetBtn.addEventListener('click', initialize)
+    startBtn.addEventListener('click', setPlay);
+    startBtn.addEventListener('click', render);
+    newRndBtn.addEventListener('click', setNewRound);
+    resetBtn.addEventListener('click', initialize);
     squares.forEach(el => {
         el.addEventListener('click', addMark);
         el.addEventListener('click', checkWin)
@@ -40,6 +42,14 @@ const game = (() => {
         playerTwo = 'Player Two';
         currentPlayer = playerOne;
         gameStatus = 'new';
+        turn = 'x';
+        render();
+    }
+
+    function setNewRound(){
+        board = [null,null,null,null,null,null,null,null,null];
+        gameStatus = 'playing';
+        currentPlayer = playerOne;
         turn = 'x';
         render();
     }
