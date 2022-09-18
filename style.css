@@ -104,5 +104,7 @@ height: 50vh;
 }
 
 .playText{
-  margin: 1rem 0;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-size: 1.5rem;
 }
