@@ -30,6 +30,8 @@ const game = (() => {
     })
 
     function initialize(){
+        gameBoard.classList.add('hide');
+        start.classList.remove('hide');
         playText.textContent = '';
         playerOneInput.value = '';
         playerTwoInput.value = '';
