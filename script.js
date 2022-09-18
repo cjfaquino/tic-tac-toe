@@ -64,7 +64,7 @@ const game = (() => {
             currentPlayer = getCurrentPlayer();
             playText.textContent = `${currentPlayer}'s turn`
         }
-        else if(gameStatus == 'win'){playText.textContent = `${currentPlayer} won!`}
+        else if(gameStatus == 'win'){playText.textContent = `The winner is ${currentPlayer}!`}
         else if(gameStatus == 'draw'){
             playText.textContent = "It's a draw..."
         };
