@@ -71,12 +71,16 @@ const game = (() => {
         if(turn=='o') return playerTwo;
     }
 
+    function capitalizeName(name){
+       return name[0].toUpperCase() + name.slice(1)
+    }
+
     function changePlayerName(){
         if(playerOneInput.value){
-            playerOne = playerOneInput.value;
+            playerOne = capitalizeName(playerOneInput.value);
         }
         if(playerTwoInput.value){
-            playerTwo = playerTwoInput.value;
+            playerTwo = capitalizeName(playerTwoInput.value);
         }
     }
 
