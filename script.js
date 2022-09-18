@@ -10,6 +10,7 @@ const game = (() => {
     const ticTacToe = document.querySelector('#game');
     const table = ticTacToe.querySelector('#table');
     const start = ticTacToe.querySelector('#start');
+    const gameBoard = ticTacToe.querySelector('#gameBoard');
     const startBtn = start.querySelector('.startBtn');
     const squares = table.querySelectorAll('.square');
     const playText = ticTacToe.querySelector('.playText');
@@ -58,7 +59,9 @@ const game = (() => {
     }
 
     function setPlay() {
-        gameStatus = 'playing'
+        gameStatus = 'playing';
+        start.classList.add('hide');
+        gameBoard.classList.remove('hide');
     }
 
     function getCurrentPlayer(){
